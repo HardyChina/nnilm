@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
-    print('Using GPU: ' + args.gpu)
+    print(('Using GPU: ' + args.gpu))
 
     # Avoid errors because fridge and freezer are considered same appliance
     Appliance.allow_synonyms = False

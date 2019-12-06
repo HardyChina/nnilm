@@ -43,17 +43,17 @@ def rectangular_metrics(pred, truth, activation_threshold=0.1, print_results=Fal
     results['sum_abs_diff'] = np.sum(np.fabs(pred[:, 2] - truth[:, 2]))
 
     if print_results:
-        print('TP: ' + str(results['tp']))
-        print('FP: ' + str(results['fp']))
-        print('TN: ' + str(results['tn']))
-        print('FN: ' + str(results['fn']))
+        print(('TP: ' + str(results['tp'])))
+        print(('FP: ' + str(results['fp'])))
+        print(('TN: ' + str(results['tn'])))
+        print(('FN: ' + str(results['fn'])))
 
-        print('F1: ' + str(results['f1']))
-        print('Precision: ' + str(results['precision']))
-        print('Recall: ' + str(results['recall']))
-        print('Accuracy: ' + str(results['accuracy']))
+        print(('F1: ' + str(results['f1'])))
+        print(('Precision: ' + str(results['precision'])))
+        print(('Recall: ' + str(results['recall'])))
+        print(('Accuracy: ' + str(results['accuracy'])))
 
-        print('Relative error in total energy: ' + str(results['relative_error_in_total_energy']))
-        print('Summed absolute difference: ' + str(results['sum_abs_diff']))
+        print(('Relative error in total energy: ' + str(results['relative_error_in_total_energy'])))
+        print(('Summed absolute difference: ' + str(results['sum_abs_diff'])))
 
     return results

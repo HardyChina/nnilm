@@ -47,9 +47,9 @@ def predict(device_name, input_data_path, start_date, end_date):
         if not os.path.exists('out'):
             os.makedirs('out')
 
-        print('Start date: ' + str(start_date_obj))
-        print('End date: ' + str(end_date_obj))
-        print('# of windows: ' + str(nr_of_windows))
+        print(('Start date: ' + str(start_date_obj)))
+        print(('End date: ' + str(end_date_obj)))
+        print(('# of windows: ' + str(nr_of_windows)))
 
         for i in range(0, nr_of_windows):
             raw_batch = []
@@ -82,13 +82,13 @@ def predict(device_name, input_data_path, start_date, end_date):
                 target_rect = plt.Rectangle((target_rect_on, 0), target_rect_width, target_rect_height, color='#D01431', fill=None, linestyle='--')
 
                 axes.add_patch(target_rect)
-                print('Positive sample: i=' + str(i) + ' start_date=' + data[i*conf['seq_length']][0] + ' start=' + str(target[0]) + ' end=' + str(target[1]) + ' avg_power=' + str(target[2] * conf['target_std']))
+                print(('Positive sample: i=' + str(i) + ' start_date=' + data[i*conf['seq_length']][0] + ' start=' + str(target[0]) + ' end=' + str(target[1]) + ' avg_power=' + str(target[2] * conf['target_std'])))
 
         print('')
-        print('avg_std=' + str(total_std / nr_of_windows))
-        print('avg_power=' + str(total_power / nr_of_windows / conf['seq_length']))
-        print('avg_prediction_time=' + str(total_prediction_time / nr_of_windows))
-        print('positive_samples_percentage=' + str(float(positive_samples) / float(nr_of_windows)))
+        print(('avg_std=' + str(total_std / nr_of_windows)))
+        print(('avg_power=' + str(total_power / nr_of_windows / conf['seq_length'])))
+        print(('avg_prediction_time=' + str(total_prediction_time / nr_of_windows)))
+        print(('positive_samples_percentage=' + str(float(positive_samples) / float(nr_of_windows))))
 
         plt.gca().set_xlim([start_date_obj, end_date_obj])
         plt.gca().xaxis.set_major_formatter(mdates.DateFormatter(date_format))

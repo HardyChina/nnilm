@@ -6,12 +6,13 @@ from neuralnilm.data.realaggregatesource import RealAggregateSource
 from neuralnilm.data.processing import DivideBy, IndependentlyCenter
 from nnilm.rectangledatapipeline import RectangleDataPipeline
 from nnilm.rectangulariser import start_and_end_and_mean
+import imp
 
 
 def set_keras_backend(backend):
     if K.backend() != backend:
         os.environ['KERAS_BACKEND'] = backend
-        reload(K)
+        imp.reload(K)
         assert K.backend() == backend
 
 
@@ -21,10 +22,10 @@ def create_data_pipeline(conf, sample_period, num_seq_per_batch, source_probabil
     data_file_path = conf['data_file'] if os.path.isabs(conf['data_file']) else os.path.join(os.path.dirname(__file__) + '/../', conf['data_file'])
     windows = {}
 
-    for window_name, window in conf[windows_key].iteritems():
+    for window_name, window in conf[windows_key].items():
         windows[window_name] = {}
 
-        for house, window_selection in window.iteritems():
+        for house, window_selection in window.items():
             windows[window_name][int(house)] = window_selection
 
     appliance_activations = load_nilmtk_activations(
@@ -50,7 +51,7 @@ def create_data_pipeline(conf, sample_period, num_seq_per_batch, source_probabil
         sample_period=sample_period
     )
 
-    sample = real_agg_source.get_batch(num_seq_per_batch=1024).next()
+    sample = next(real_agg_source.get_batch(num_seq_per_batch=1024))
     sample = sample.before_processing
     real_input_std = sample.input.flatten().std()
     real_target_std = sample.target.flatten().std()

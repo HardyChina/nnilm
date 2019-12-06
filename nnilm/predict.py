@@ -15,7 +15,7 @@ def predict(device_name, sample_period=10, num_seq_per_batch=512, save_path=None
     plots_save_path = os.path.join(save_path, 'plots')
 
     if not os.path.isfile(conf_filepath):
-        print('No config found for device "{}". Please see "nnilm/device_config/".'.format(device_name))
+        print(('No config found for device "{}". Please see "nnilm/device_config/".'.format(device_name)))
         exit(1)
 
     with open(conf_filepath) as config_file:
@@ -42,22 +42,22 @@ def predict(device_name, sample_period=10, num_seq_per_batch=512, save_path=None
         classification = results['classification_2_state']
         regression = results['regression']
 
-        print('real_input_std: ' + str(real_input_std))
-        print('real_target_std: ' + str(real_target_std))
-        print('real_avg_power: ' + str(real_avg_power))
+        print(('real_input_std: ' + str(real_input_std)))
+        print(('real_target_std: ' + str(real_target_std)))
+        print(('real_avg_power: ' + str(real_avg_power)))
         print('')
-        print('TP: ' + str(my_metrics['tp']))
-        print('FP: ' + str(my_metrics['fp']))
-        print('TN: ' + str(my_metrics['tn']))
-        print('FN: ' + str(my_metrics['fn']))
+        print(('TP: ' + str(my_metrics['tp'])))
+        print(('FP: ' + str(my_metrics['fp'])))
+        print(('TN: ' + str(my_metrics['tn'])))
+        print(('FN: ' + str(my_metrics['fn'])))
         print('')
-        print('Accuracy: ' + str(classification['accuracy_score']))
-        print('F1: ' + str(classification['f1_score']))
-        print('Precision: ' + str(classification['precision_score']))
-        print('Recall: ' + str(classification['recall_score']))
+        print(('Accuracy: ' + str(classification['accuracy_score'])))
+        print(('F1: ' + str(classification['f1_score'])))
+        print(('Precision: ' + str(classification['precision_score'])))
+        print(('Recall: ' + str(classification['recall_score'])))
         print('')
-        print('Mean absolute error: ' + str(regression['mean_absolute_error'] * conf['target_std']))
-        print('Relative error in total energy: ' + str(regression['relative_error_in_total_energy']))
+        print(('Mean absolute error: ' + str(regression['mean_absolute_error'] * conf['target_std'])))
+        print(('Relative error in total energy: ' + str(regression['relative_error_in_total_energy'])))
 
     for sample_index in plot_predictions:
         plot_prediction(
@@ -140,9 +140,9 @@ def predict(device_name, sample_period=10, num_seq_per_batch=512, save_path=None
         print('')
         print('Showing first five predictions and ground truth:')
         print('Prediction:')
-        print(pred[:5])
+        print((pred[:5]))
         print('Ground truth:')
-        print(np.reshape(test_batch.target[:5], [5, 3]))
+        print((np.reshape(test_batch.target[:5], [5, 3])))
 
     return pred, results
 

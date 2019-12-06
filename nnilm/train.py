@@ -26,7 +26,7 @@ def train(
     checkpoint_path = os.path.join(save_path, 'checkpoints')
 
     if not os.path.isfile(conf_filepath):
-        print('No config found for device "{}". Please see "nnilm/device_config/".'.format(device_config))
+        print(('No config found for device "{}". Please see "nnilm/device_config/".'.format(device_config)))
         exit(1)
 
     if not os.path.isdir(checkpoint_path):
@@ -44,7 +44,7 @@ def train(
         model = create_rectangular_model(conf['seq_length'])
 
     pipeline, real_input_std, real_target_std, real_avg_power = create_data_pipeline(conf, sample_period, num_seq_per_batch)
-    validation_batch = pipeline.data_generator(fold='unseen_activations_of_seen_appliances').next()
+    validation_batch = next(pipeline.data_generator(fold='unseen_activations_of_seen_appliances'))
     stats_file_name = 'stats-e{}-to-e{}.json'.format(start_epoch, end_epoch)
     stats = {
         'conf': conf,
@@ -68,7 +68,7 @@ def train(
         return float(learning_rate)
 
     if verbose:
-        print(model.summary())
+        print((model.summary()))
         plot_model(model, to_file=os.path.join(save_path, 'model.png'), show_shapes=True, show_layer_names=False)
 
     if end_epoch > start_epoch:
